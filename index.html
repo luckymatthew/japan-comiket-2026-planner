@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#10131c" />
+  <meta name="description" content="Planning dashboard for a three-person Kyoto and Tokyo trip centred on Comiket 109." />
+  <title>Japan × Comiket 109 — Trip Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top"><span>旅</span><b>JAPAN '26</b></a>
+    <nav aria-label="Planner sections">
+      <a href="#itinerary">Itinerary</a><a href="#comiket">Comiket</a><a href="#budget">Budget</a><a href="#checklist">Checklist</a>
+    </nav>
+    <div class="party">3 travellers</div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">KYOTO → TOKYO · 11 DAYS</p>
+        <h1>Winter streets.<br><em>Three days of Comiket.</em></h1>
+        <p class="intro">A working plan for 25 Dec 2026–4 Jan 2027, built around C109 at Tokyo Big Sight.</p>
+        <div class="flight-strip">
+          <div><small>ARRIVE</small><strong>HND 04:55</strong><span>Fri 25 Dec</span></div>
+          <div class="route-line"><i></i><span>10 nights</span><i></i></div>
+          <div class="align-right"><small>DEPART</small><strong>NRT 18:35</strong><span>Mon 4 Jan</span></div>
+        </div>
+      </div>
+      <figure class="hero-image">
+        <img src="https://ja.kyoto.travel/resource/news/images/____________%284%29.JPG" alt="Snow-covered torii gates overlooking Kyoto" />
+        <figcaption>京都 · early starts, quieter paths</figcaption>
+      </figure>
+    </section>
+
+    <section class="overview" aria-label="Trip overview">
+      <article><span class="number">03</span><div><b>Kyoto nights</b><small>25–28 December</small></div></article>
+      <article><span class="number cyan">07</span><div><b>Tokyo nights</b><small>28 Dec–4 January</small></div></article>
+      <article><span class="number red">03</span><div><b>C109 days</b><small>29–31 December</small></div></article>
+      <article><span class="number gold">¥</span><div><b>Budget target</b><small>¥650,000 / group</small></div></article>
+    </section>
+
+    <section id="itinerary" class="section">
+      <div class="section-head"><div><p class="eyebrow">THE ROUTE</p><h2>Day-by-day</h2></div><div class="filters" role="group" aria-label="Filter itinerary"><button class="active" data-filter="all">All</button><button data-filter="kyoto">Kyoto</button><button data-filter="tokyo">Tokyo</button><button data-filter="comiket">C109</button></div></div>
+      <div id="timeline" class="timeline"></div>
+    </section>
+
+    <section id="comiket" class="section comiket-panel">
+      <div class="section-head"><div><p class="eyebrow red-text">29–31 DEC · TOKYO BIG SIGHT</p><h2>Comiket command centre</h2></div><a class="official-link" href="https://www.comiket.co.jp/info-a/TAFO/" target="_blank" rel="noreferrer">Official participant info ↗</a></div>
+      <div class="comiket-grid">
+        <div class="days">
+          <article><span>DAY 1</span><strong>Tue 29</strong><p>Circles + corporate booths</p></article>
+          <article><span>DAY 2</span><strong>Wed 30</strong><p>Circles + corporate booths</p></article>
+          <article><span>DAY 3</span><strong>Thu 31</strong><p>Circles; finishes at 16:00</p></article>
+        </div>
+        <div class="priority-card">
+          <h3>Shared circle notes</h3>
+          <p>Add booth locations, artist names and who will queue. Saved on this device.</p>
+          <textarea id="circleNotes" rows="8" placeholder="Example: Day 1 · East 1 · A01a · Traveller 2 queues…"></textarea>
+          <div class="save-state" id="notesState">Saved automatically</div>
+        </div>
+      </div>
+      <div class="rules">
+        <span>NO OVERNIGHT QUEUEING</span><span>ONE TICKET PER PERSON / DAY</span><span>CASH + POWER BANK</span><span>FIX A MEETING POINT</span>
+      </div>
+    </section>
+
+    <section id="budget" class="section">
+      <div class="section-head"><div><p class="eyebrow">GROUP OF THREE</p><h2>Live budget</h2></div><p class="section-note">Edit any amount—the total updates instantly and stays on this device.</p></div>
+      <div class="budget-layout">
+        <div id="budgetRows" class="budget-rows"></div>
+        <aside class="total-card"><small>ESTIMATED GROUP TOTAL</small><strong id="budgetTotal">¥0</strong><span id="perPerson">¥0 per person</span><div class="budget-bar"><i id="budgetFill"></i></div><p>Planning target: ¥650,000<br><small>Flights and Comiket merchandise excluded.</small></p></aside>
+      </div>
+    </section>
+
+    <section id="checklist" class="section">
+      <div class="section-head"><div><p class="eyebrow">BEFORE DEPARTURE</p><h2>Booking checklist</h2></div><button id="resetChecks" class="text-button">Reset checks</button></div>
+      <div id="checkGrid" class="check-grid"></div>
+    </section>
+
+    <section class="section departure">
+      <div><p class="eyebrow">MON 4 JAN</p><h2>Departure clock</h2><p>Keep the final morning flexible. Collect luggage by 13:00 and leave central Tokyo no later than 14:15.</p></div>
+      <div class="clock-row"><span><b>13:00</b><small>Collect bags</small></span><i></i><span><b>14:15</b><small>Leave Tokyo</small></span><i></i><span><b>15:30</b><small>At NRT</small></span><i></i><span><b>18:35</b><small>Take-off</small></span></div>
+    </section>
+  </main>
+  <footer><span>日本 2026–27</span><p>Times and opening hours should be rechecked before travel, especially during New Year.</p><a href="#top">Back to top ↑</a></footer>
+  <script src="./app.js"></script>
+</body>
+</html>
